@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Porte Folio</title>
+    <title>Holbies Learning Hub</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-social/5.1.1/bootstrap-social.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.3.0/css/flag-icon.min.css">
@@ -12,13 +12,18 @@
 </head>
 <body>
     <header>
-        <div class="logo">Mon PorteFolio</div>
+        <div class="logo">Holbies Learning Hub</div>
         <nav>
             <ul>
-                <li><a href="/">Accueil</a></li>
-                <li><a href="/login">Connexion</a></li>
-                <li><a href="/register">Inscription</a></li>
-                <li><a href="/profile">Profil</a></li>
+                <li><a href="{{ url_for('index') }}">Accueil</a></li>
+                <li><a href="{{ url_for('articles') }}">Articles</a></li>
+                {% if session['username'] %}
+                    <li><a href="{{ url_for('profile') }}">Profil</a></li>
+                    <li><a href="{{ url_for('logout') }}">Déconnexion</a></li>
+                {% else %}
+                    <li><a href="{{ url_for('login') }}">Connexion</a></li>
+                    <li><a href="{{ url_for('register') }}">Inscription</a></li>
+                {% endif %}
             </ul>
         </nav>
     </header>

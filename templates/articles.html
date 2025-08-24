@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="container">
+        <h2>Tous les articles</h2>
+        <p><a href="{{ url_for('add_article') }}" class="btn">Ajouter un nouvel article</a></p>
+        {% if articles %}
+            <ul class="article-list">
+                {% for article in articles %}
+                    <li>
+                        <h3><a href="{{ url_for('article_detail', article_id=article._id) }}">{{ article.title }}</a></h3>
+                        <p>Par: {{ article.author }} le {{ article.created_at.strftime('%d/%m/%Y') }}</p>
+                        <p>{{ article.content[:200] }}...</p> {# Display first 200 chars of content #}
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>Aucun article n'a été publié pour le moment.</p>
+        {% endif %}
+    </div>
+{% endblock %}
